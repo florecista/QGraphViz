@@ -586,16 +586,18 @@ class QGraphViz_Core(QWidget):
         painter.setBrush(brush)
         gpos = subgraph.global_pos
 
-        painter.drawRect(
-                    int(gpos[0]-subgraph.size[0]/2),
-                    int(gpos[1]-subgraph.size[1]/2),
-                    subgraph.size[0], subgraph.size[1])
+        xPos = int(gpos[0]-subgraph.size[0]/2)
+        yPos = int(gpos[1]-subgraph.size[1]/2)
+        width = int(subgraph.size[0])
+        height = int(subgraph.size[1])
+
+        painter.drawRect(xPos, yPos, width, height)
 
         if("label" in subgraph.kwargs.keys()):
             painter.drawText(
-                int(gpos[0]-subgraph.size[0]/2),
-                int(gpos[1]-subgraph.size[1]/2),
-                subgraph.size[0], subgraph.size[1],
+                xPos,
+                yPos,
+                width, height,
                 Qt.AlignCenter|Qt.AlignTop,subgraph.kwargs["label"])
 
     def paintGraph(self, graph, painter):
@@ -640,8 +642,8 @@ class QGraphViz_Core(QWidget):
             else:
                 offset[0]=-20*(nb_next/2)
 
-            point_start = QPoint(gspos[0], gspos[1])
-            point_end = QPoint(gdpos[0], gdpos[1])
+            point_start = QPoint(int(gspos[0]), int(gspos[1]))
+            point_end = QPoint(int(gdpos[0]), int(gdpos[1]))
 
             line = QLineF(point_start, point_end)
             painter.setBrush(Qt.black)
@@ -899,8 +901,8 @@ class QGraphViz_Core(QWidget):
         x,y,w,h = self.getRect_Size()
         w=x+w
         h=y+h
-        self.setMinimumWidth(w)
-        self.setMinimumHeight(h)
+        self.setMinimumWidth(int(w))
+        self.setMinimumHeight(int(h))
         if(self.parent is not None):
             if(self.minimumWidth()<self.parent().width()):
                 self.setMinimumWidth(self.parent().width())
