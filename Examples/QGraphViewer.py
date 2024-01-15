@@ -110,9 +110,7 @@ if __name__ == "__main__":
     # Create a Main window
     w = QMainWindow()
     w.setWindowTitle('Simple')
-    # Add Status Bar
-    statusbar = QStatusBar(w)
-    w.setStatusBar(statusbar)
+
     # Create a central widget to handle the QGraphViz object
     wi=QWidget()
     wi.setLayout(QVBoxLayout())
