@@ -45,6 +45,8 @@ class QGraphViz_Core(QWidget):
                     node_removed_callback=None, # A callback called when a node is removed
                     edge_removed_callback=None, # A callback called when an edge is removed
 
+                    mouse_moved_callback=None,
+
                     # Custom options
                     min_cursor_edge_dist=3,
                     hilight_Nodes=False,
@@ -104,6 +106,8 @@ class QGraphViz_Core(QWidget):
         self.edge_invoked_callback = edge_invoked_callback
         self.node_removed_callback = node_removed_callback
         self.edge_removed_callback = edge_removed_callback
+
+        self.mouse_moved_callback = mouse_moved_callback
 
         self.hilight_Nodes = hilight_Nodes
         self.hilight_Edges = hilight_Edges
@@ -430,6 +434,9 @@ class QGraphViz_Core(QWidget):
         
 
     def mouseMoveEvent(self, event):
+        if (self.mouse_moved_callback is not None):
+            self.mouse_moved_callback(event)
+
         if self.selected_Node is not None and self.mouse_down:
             x = event.x()
             y = event.y()
@@ -926,6 +933,8 @@ class QGraphViz(QScrollArea):
                  node_removed_callback=None,  # A callback called when a node is removed
                  edge_removed_callback=None,  # A callback called when an edge is removed
 
+                 mouse_moved_callback=None,
+
                  # Custom options
                  min_cursor_edge_dist=3,
                  hilight_Nodes=False,
@@ -949,6 +958,8 @@ class QGraphViz(QScrollArea):
                 edge_invoked_callback=edge_invoked_callback, # A callback called when an edge is double clicked
                 node_removed_callback=node_removed_callback, # A callback called when a node is removed
                 edge_removed_callback=edge_removed_callback, # A callback called when an edge is removed
+
+                mouse_moved_callback=mouse_moved_callback,
 
                 # Custom options
                 min_cursor_edge_dist=min_cursor_edge_dist,

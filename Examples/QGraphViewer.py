@@ -44,6 +44,11 @@ if __name__ == "__main__":
         print("Node removed")
     def edge_removed(node):
         print("Edge removed")
+
+    def mouse_moved(event):
+        x = event.x()
+        y = event.y()
+        print("x:% s, y:% s" % (x, y))
         
     # Create QGraphViz widget
     show_subgraphs=True
@@ -56,6 +61,8 @@ if __name__ == "__main__":
         edge_invoked_callback=edge_invoked,
         node_removed_callback=node_removed,
         edge_removed_callback=edge_removed,
+
+        mouse_moved_callback=mouse_moved,
 
         hilight_Nodes=True,
         hilight_Edges=True,
