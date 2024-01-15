@@ -8,7 +8,8 @@ A simple graphviz graphs viewer that enables creating graphs visually,
 manipulate them and save them
 
 """
-from PyQt5.QtWidgets import QFileDialog, QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QHBoxLayout, QFormLayout, QComboBox, QPushButton, QInputDialog, QLineEdit, QLabel
+from PyQt5.QtWidgets import QFileDialog, QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QHBoxLayout, \
+    QFormLayout, QComboBox, QPushButton, QInputDialog, QLineEdit, QLabel, QStatusBar
 import sys
 import os
 sys.path.insert(1,os.path.dirname(__file__)+"/..")
@@ -109,6 +110,9 @@ if __name__ == "__main__":
     # Create a Main window
     w = QMainWindow()
     w.setWindowTitle('Simple')
+    # Add Status Bar
+    statusbar = QStatusBar(w)
+    w.setStatusBar(statusbar)
     # Create a central widget to handle the QGraphViz object
     wi=QWidget()
     wi.setLayout(QVBoxLayout())
